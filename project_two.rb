@@ -62,7 +62,13 @@ module Enumerable
       end
 
       def my_count
-
+        counter = 0
+        self.my_each do |x|
+          if yield(x)
+            counter += 1
+          end
+        end
+        counter
       end
 
       def my_map
@@ -82,5 +88,6 @@ puts arr.my_select { |x| x.even? }
 puts arr.my_all? { |x| x.integer? }
 puts arr.my_all? { |x| x }
 puts arr.my_any? { |x| x == 6}
-puts arr.my_none? { |x| x > 6 } 
+puts arr.my_none? { |x| x > 6 }
+puts arr.my_count { |x| x < 4 }
 puts "Your program works!"
