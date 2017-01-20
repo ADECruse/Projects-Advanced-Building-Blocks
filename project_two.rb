@@ -51,6 +51,16 @@ module Enumerable
         true_or_false
       end
 
+      def my_none?
+        true_or_false = true
+        self.my_each do |x|
+          if yield(x)
+            true_or_false = false
+          end
+        end
+        true_or_false
+      end
+
       def my_count
 
       end
@@ -63,10 +73,6 @@ module Enumerable
 
       end
 
-      def my_map
-
-      end
-
     end
 
 arr = [1,2,3,4,5]
@@ -76,4 +82,5 @@ puts arr.my_select { |x| x.even? }
 puts arr.my_all? { |x| x.integer? }
 puts arr.my_all? { |x| x }
 puts arr.my_any? { |x| x == 6}
+puts arr.my_none? { |x| x > 6 } 
 puts "Your program works!"
