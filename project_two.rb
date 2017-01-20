@@ -72,7 +72,12 @@ module Enumerable
       end
 
       def my_map
-
+        new_arr = Array.new
+        self.my_each do |x|
+          yield(x)
+          new_arr.push(yield(x))
+        end
+        new_arr
       end
 
       def my_inject
@@ -90,4 +95,5 @@ puts arr.my_all? { |x| x }
 puts arr.my_any? { |x| x == 6}
 puts arr.my_none? { |x| x > 6 }
 puts arr.my_count { |x| x < 4 }
+puts arr.my_map { |x| x +=1 } 
 puts "Your program works!"
