@@ -22,7 +22,13 @@ module Enumerable
       end
 
       def my_select
-
+        new_arr = Array.new
+        self.my_each do |x|
+          if yield(x)
+            new_arr.push(x)
+          end
+        end
+        new_arr
       end
 
       def my_all?
@@ -54,4 +60,5 @@ module Enumerable
 arr = [1,2,3,4,5]
 puts arr.my_each { |x| puts x }
 puts arr.my_each_with_index {|x, y| puts y }
+puts arr.my_select { |x| x.even? }
 puts "Your program works!"
