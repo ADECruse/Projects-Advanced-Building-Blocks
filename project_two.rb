@@ -32,7 +32,13 @@ module Enumerable
       end
 
       def my_all?
-
+        true_or_false = true
+        self.my_each do |x|
+          unless yield(x)
+            true_or_false = false
+          end
+        end
+        true_or_false
       end
 
       def my_any?
@@ -61,4 +67,5 @@ arr = [1,2,3,4,5]
 puts arr.my_each { |x| puts x }
 puts arr.my_each_with_index {|x, y| puts y }
 puts arr.my_select { |x| x.even? }
+puts arr.my_all? { |x| x.integer? }
 puts "Your program works!"
